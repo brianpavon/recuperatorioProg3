@@ -64,10 +64,11 @@ class Usuario extends ManejadorArchivo
         $tipoUsuario = $_POST['tipo'] ?? '';
         $usuarioJson = Usuario::LeerUsuarioJSON();
         $nuevoUsuario = new Usuario($mail, $clave, $tipoUsuario);
+        $arrayNuevo = $usuarioJson;
         if (Usuario::ValidarMailUnico($nuevoUsuario)) 
         {
-            array_push($usuarioJson, $nuevoUsuario);
-            if (ManejadorArchivo::GuardarJSON(USUARIOJSON, $usuarioJson)) 
+            array_push($arrayNuevo, $nuevoUsuario);
+            if (ManejadorArchivo::GuardarJSON(USUARIOJSON, $arrayNuevo)) 
             {
                 $creo = true;
                 echo '<br>Usuario guardado<br>';
